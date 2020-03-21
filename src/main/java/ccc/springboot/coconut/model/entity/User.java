@@ -1,5 +1,6 @@
 package ccc.springboot.coconut.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
@@ -12,7 +13,7 @@ public class User {
         super();
     }
 
-    public User(Integer id, String username, String address) {
+    public User(Integer id, @JsonProperty("name") String username, @JsonProperty("location") String address) {
         this.id = id;
         this.username = username;
         this.address = address;
