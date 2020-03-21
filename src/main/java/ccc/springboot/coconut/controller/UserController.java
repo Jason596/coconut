@@ -1,5 +1,6 @@
 package ccc.springboot.coconut.controller;
 
+import ccc.springboot.coconut.dao.UserMapper;
 import ccc.springboot.coconut.model.entity.User;
 import ccc.springboot.coconut.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,11 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
+    private UserMapper userMapper;
+
+
+
     private UserService userService;
 
     @Autowired
@@ -21,7 +27,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("userList")
+    @RequestMapping("/userList")
     public List<User> getAllUsers() {
         return this.userService.getAllUsers();
     }
