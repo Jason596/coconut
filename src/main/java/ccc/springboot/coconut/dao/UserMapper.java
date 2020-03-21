@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Mapper
+// issue with intellj, need add this repository to solve the issue.
+@Repository
 public interface UserMapper {
   @Select("select * from tb_user")
   List<User> getAllUsers();
