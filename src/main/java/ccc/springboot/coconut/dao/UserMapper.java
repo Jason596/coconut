@@ -9,9 +9,9 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Select("select * from tb_user")
-    List<User> getAllUsers();
+  @Select("select * from tb_user")
+  List<User> getAllUsers();
 
-    @Delete("delete from tb_user where id = #{id}")
-    Void delete(Integer Id);
+  @Delete("delete from tb_user where id = #{id}")
+  void delete(Integer Id);
 }
