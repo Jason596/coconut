@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUserById(@PathVariable Integer id) {
+    public void deleteUserById(@PathVariable @Valid  Integer id) {
         this.userService.deleteUser(id);
     }
 }
