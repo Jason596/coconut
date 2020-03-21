@@ -7,8 +7,10 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface UserService {
-    // get all users
-    List<User> getAllUsers();
-    // delete user by id
-    void deleteUser(Integer id);
+  // add an user
+  void addUser(User user);
+  // get all users
+  List<User> getAllUsers();
+  // delete user by id
+  void deleteUser(Integer id);
 }

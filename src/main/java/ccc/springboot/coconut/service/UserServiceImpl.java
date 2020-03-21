@@ -21,6 +21,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void addUser(User user) {
+        this.userMapper.addUser(user.getUsername(), user.getAddress());
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return this.userMapper.getAllUsers();
     }
