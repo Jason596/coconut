@@ -2,6 +2,7 @@ package ccc.springboot.coconut.dao;
 
 import ccc.springboot.coconut.model.entity.User;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,10 @@ public interface UserMapper {
   @Select("select * from tb_user")
   List<User> getAllUsers();
 
+  @Insert(
+      "INSERT INTO tb_user(tb_user.username, tb_user.address) VALUES (#{userName}, #{location})")
+  void addUser(String userName, String location);
+
   @Delete("delete from tb_user where id = #{id}")
-  void delete(Integer Id);
+  void delete(Integer id);
 }
