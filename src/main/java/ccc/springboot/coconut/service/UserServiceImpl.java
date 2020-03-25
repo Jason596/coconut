@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -28,6 +29,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         return this.userMapper.getAllUsers();
+    }
+
+    @Override
+    public Optional<User> getUserById(Integer id) {
+        return userMapper.getUserById(id);
     }
 
     @Override
