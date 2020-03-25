@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
@@ -28,6 +29,11 @@ public class UserController {
     @GetMapping("/userList")
     public List<User> getAllUsers() {
         return this.userService.getAllUsers();
+    }
+
+    @GetMapping("/user/{id}")
+    public Optional<User> getUserById(@PathVariable("id")  Integer id) {
+        return this.userService.getUserById(id);
     }
 
     @DeleteMapping("/{id}")
