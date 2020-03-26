@@ -32,8 +32,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getUserById(Integer id) {
-        return userMapper.getUserById(id);
+    public User getUserById(Integer id) {
+        Optional<User> opt = userMapper.getUserById(id);
+        return  opt.orElse(null);
     }
 
     @Override

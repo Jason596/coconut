@@ -2,6 +2,7 @@ package ccc.springboot.coconut.controller;
 
 import ccc.springboot.coconut.model.entity.User;
 import ccc.springboot.coconut.service.UserService;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +33,8 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public Optional<User> getUserById(@PathVariable("id")  Integer id) {
+    public User getUserById(@PathVariable("id") Integer id) {
+        
         return this.userService.getUserById(id);
     }
 

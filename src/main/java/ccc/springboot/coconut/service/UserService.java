@@ -17,7 +17,7 @@ public interface UserService {
   List<User> getAllUsers();
 
   // get user by id
-  Optional<User> getUserById(Integer id);
+  User getUserById(Integer id);
 
   // delete user by id
   void deleteUser(Integer id);
