@@ -13,7 +13,7 @@ public class User {
         super();
     }
 
-    public User(Integer id, @JsonProperty("name") String username, @JsonProperty("location") String address) {
+    public User(Integer id, @JsonProperty("name") String username, @JsonProperty("address") String address) {
         this.id = id;
         this.username = username;
         this.address = address;
