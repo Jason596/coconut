@@ -13,7 +13,6 @@ import java.util.Optional;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-
     private UserMapper userMapper;
 
     @Autowired
@@ -35,6 +34,15 @@ public class UserServiceImpl implements UserService {
     public User getUserById(Integer id) {
         Optional<User> opt = userMapper.getUserById(id);
         return  opt.orElse(null);
+    }
+
+    @Override
+    public void updateUser(Integer id, User user) {
+        Optional<User> opt = userMapper.getUserById(id);
+
+        if (opt.isPresent()) {
+            userMapper.updateUser(id, user.getUsername(), user.getAddress());
+        }
     }
 
     @Override
