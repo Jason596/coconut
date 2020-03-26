@@ -2,8 +2,8 @@ package ccc.springboot.coconut.controller;
 
 import ccc.springboot.coconut.model.entity.User;
 import ccc.springboot.coconut.service.UserService;
-import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -36,6 +36,12 @@ public class UserController {
     public User getUserById(@PathVariable("id") Integer id) {
         
         return this.userService.getUserById(id);
+    }
+
+
+    @PutMapping("/user/{id}")
+    public void updateUserById(@PathVariable(name = "id") Integer id, @Valid @NonNull @RequestBody User user) {
+        this.userService.updateUser(id, user);
     }
 
     @DeleteMapping("/{id}")
