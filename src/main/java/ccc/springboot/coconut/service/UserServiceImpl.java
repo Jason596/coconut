@@ -3,6 +3,8 @@ package ccc.springboot.coconut.service;
 import ccc.springboot.coconut.dao.UserMapper;
 import ccc.springboot.coconut.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,11 +23,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CacheEvict(value="UserCache", key="'user.getAllUsers'")
     public void addUser(User user) {
         this.userMapper.addUser(user.getUsername(), user.getAddress());
     }
 
     @Override
+    @Cacheable(value="UserCache", key="'user.getAllUsers'")     // how to define the key and value
     public List<User> getAllUsers() {
         return this.userMapper.getAllUsers();
     }
@@ -37,6 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CacheEvict(value="UserCache", key="'user.getAllUsers'")
     public void updateUser(Integer id, User user) {
         Optional<User> opt = userMapper.getUserById(id);
 
@@ -46,6 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CacheEvict(value="UserCache", key="'user.getAllUsers'")
     public void deleteUser(Integer id) {
     System.out.println("The user id: " + id + " has been deleted");
     this.userMapper.delete(id);
