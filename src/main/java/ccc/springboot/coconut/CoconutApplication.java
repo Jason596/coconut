@@ -17,6 +17,8 @@ public class CoconutApplication {
     public Queue queue() {
         return new ActiveMQQueue("active.queue");    // this line of code created an internal activemq. but you could also
     }                                                      // use an external activemq with specify details in application.yaml.
+
+
     public static void main(String[] args) {
         SpringApplication.run(CoconutApplication.class, args);
     }
