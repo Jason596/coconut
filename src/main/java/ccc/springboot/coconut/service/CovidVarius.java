@@ -2,6 +2,7 @@ package ccc.springboot.coconut.service;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +20,8 @@ public class CovidVarius {
       "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 
   @PostConstruct
-  public void fetechVariusData() throws IOException, InterruptedException {
+  @Scheduled(cron = "* * 1 * * *")
+  public void fetchVirusData() throws IOException, InterruptedException {
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder().uri(URI.create(URL_LINK)).build();
 
