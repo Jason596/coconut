@@ -4,6 +4,15 @@ public class VirusStats {
   private String State;
   private String Country;
   private int lastConfirmedNum;
+  private int numOfChange;
+
+    public int getNumOfChange() {
+        return numOfChange;
+    }
+
+    public void setNumOfChange(int numOfChange) {
+        this.numOfChange = numOfChange;
+    }
 
     @Override
     public String toString() {
