@@ -4,13 +4,30 @@
 
 <head>
     <title>Covid-19 Cases</title>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
-
-<p th:text="${testName}"></p>
-
+<h1>Covid-19 Cases Tracker Application</h1>
+<p>This application lists the current number of cases reported across the global</p>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <p class="lead">Total Cases: </p>
+        <h1 th:text="${totalCases}"></h1>
+    </div>
+</div>
+<table>
+    <tr>
+        <th>Country</th>
+        <th>State</th>
+        <th>Confirmed Cases</th>
+    </tr>
+    <tr th:each="item : ${localVirusStats}">
+        <td th:text="${item.country}"></td>
+        <td th:text="${item.state}"></td>
+        <td th:text="${item.lastConfirmedNum}"></td>
+    </tr>
+</table>
 </body>
 
 </html>
