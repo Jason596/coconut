@@ -40,7 +40,6 @@ public class CovidVarius {
       caseNum.setCountry(record.get("Country/Region"));
       caseNum.setLastConfirmedNum(Integer.parseInt(record.get(record.size() - 1)));
       newStatsArray.add(caseNum);
-      System.out.println(caseNum.toString());
     }
 
     this.statsArray = newStatsArray;
