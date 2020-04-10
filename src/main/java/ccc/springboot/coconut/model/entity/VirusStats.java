@@ -1,6 +1,6 @@
 package ccc.springboot.coconut.model.entity;
 
-public class VirusModel {
+public class VirusStats {
   private String State;
   private String Country;
   private int lastConfirmedNum;
