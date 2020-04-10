@@ -22,6 +22,10 @@ public class CovidVarius {
       "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
   List<VirusStats> statsArray = new ArrayList<>();
 
+  public List<VirusStats> getStatsArray() {
+    return statsArray;
+  }
+
   @PostConstruct
   @Scheduled(cron = "* * 1 * * *")
   public void fetchVirusData() throws IOException, InterruptedException {
