@@ -23,9 +23,10 @@ public class VirusInfo {
   public String virusStats(Model model) {
     List<VirusStats> statsArray = covidVarius.getStatsArray();
     int totalCases = statsArray.stream().mapToInt(num -> num.getLastConfirmedNum()).sum();
-
+    int totalCasesOfChanges = statsArray.stream().mapToInt(num -> num.getNumOfChange()).sum();
     model.addAttribute("localVirusStats", statsArray);
     model.addAttribute("totalCases", totalCases);
+    model.addAttribute("totalCasesOfChanges", totalCasesOfChanges);
     return "home";
   }
 }

@@ -39,10 +39,14 @@ public class CovidVarius {
 
     Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReader);
     for (CSVRecord record : records) {
+      int lastConfirmedNum = Integer.parseInt(record.get(record.size() - 1));
+      int preConfirmedNum = Integer.parseInt(record.get(record.size() - 2));
       VirusStats caseNum = new VirusStats();
+
       caseNum.setState(record.get("Province/State"));
       caseNum.setCountry(record.get("Country/Region"));
-      caseNum.setLastConfirmedNum(Integer.parseInt(record.get(record.size() - 1)));
+      caseNum.setLastConfirmedNum(lastConfirmedNum);
+      caseNum.setNumOfChange(lastConfirmedNum - preConfirmedNum);
       newStatsArray.add(caseNum);
     }
 
