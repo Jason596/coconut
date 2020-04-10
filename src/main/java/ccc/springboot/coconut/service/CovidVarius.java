@@ -1,5 +1,6 @@
 package ccc.springboot.coconut.service;
 
+import ccc.springboot.coconut.model.entity.VirusStats;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -12,16 +13,20 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CovidVarius {
-
   public static final String URL_LINK =
       "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+  List<VirusStats> statsArray = new ArrayList<>();
 
   @PostConstruct
   @Scheduled(cron = "* * 1 * * *")
   public void fetchVirusData() throws IOException, InterruptedException {
+    List<VirusStats> newStatsArray = new ArrayList<>();
+
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder().uri(URI.create(URL_LINK)).build();
 
@@ -30,8 +35,14 @@ public class CovidVarius {
 
     Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReader);
     for (CSVRecord record : records) {
-      String id = record.get("Province/State");
-      System.out.println(id);
+      VirusStats caseNum = new VirusStats();
+      caseNum.setState(record.get("Province/State"));
+      caseNum.setCountry(record.get("Country/Region"));
+      caseNum.setLastConfirmedNum(record.size() - 1);
+      newStatsArray.add(caseNum);
+      System.out.println(caseNum.toString());
     }
+
+    this.statsArray = newStatsArray;
   }
 }
